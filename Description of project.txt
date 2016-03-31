@@ -1,0 +1,28 @@
+The API:
+	url: http://developer.echonest.com/tutorial-overview.html (for tutorial on how to use)
+	api_key: FGYIK9QZRNXZTLU1F 
+	consumer_key: bd9df6eb104eff6560f00b0e0b9ebf32 
+	shared secret: vj/VSmOTS22gKrl24DnMXg
+		NOTE--api has a limit on how many requests can be made in a minute.
+	
+	Example:
+		http://developer.echonest.com/api/v4/song/search?api_key=FGYIK9QZRNXZTLU1F&artist=radiohead
+			Uses my api key to find artists with the name radiohead
+			
+		http://developer.echonest.com/api/v4/song/search?api_key=FILDTEOIK2HBORODV&artist=radiohead
+			Uses api key to find songs by radioshead
+			
+Goals:
+	Allow user to connect to server and submit a form that specifies an artist, and returns the top songs by them.
+	Allow user to see a list of top songs. (Can also specify how many results to view and how to sort).
+	Allow user to select a genre, and display a certain number of results.
+	Allow user to make a playlist of a certain number of songs that are similar to a certain band
+	Allow user to make a playlist of a certain number of songs of a certain genre.
+	
+	Advanced:
+		Allow user to have the option to change how the songs are sorted, and how many results they can see.
+		Allow tempo setting?
+		
+Decisions to make:
+	Do we want a html-based gui or a command line interface?
+	
