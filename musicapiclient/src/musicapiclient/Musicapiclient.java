@@ -1,0 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package musicapiclient;
+
+/**
+ *
+ * @author Victoria Hayes
+ */
+public class Musicapiclient {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        // Make a client that connects to server, and inputs data (either via command line interface or html form)
+    }
+    
+}
