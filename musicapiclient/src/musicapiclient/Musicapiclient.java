@@ -5,6 +5,8 @@
  */
 package musicapiclient;
 
+
+
 /**
  *
  * @author Victoria Hayes
@@ -15,8 +17,12 @@ public class Musicapiclient {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        // Make a client that connects to server, and inputs data (either via command line interface or html form)
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                GUI_page1 start=new GUI_page1();
+                start.setVisible(true);
+            }
+        });
     }
-    
+
 }
