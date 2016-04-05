@@ -25,4 +25,4 @@ Goals:
 		
 Decisions to make:
 	Do we want a html-based gui or a command line interface?
-	
+	 - Commited to HTML Based GUI
