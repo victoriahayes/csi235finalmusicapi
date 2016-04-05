@@ -74,7 +74,7 @@ public static String fetchData(int year)
 		}  
 		if (reader != null)
 		{                
-			try           
+			try       
 			 {            
 				 reader.close();    //close the input stream  
 			 }                
