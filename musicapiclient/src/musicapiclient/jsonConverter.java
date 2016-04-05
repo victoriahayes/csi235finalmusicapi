@@ -14,7 +14,7 @@ public class jsonConverter {
     public jsonConverter()
     {}
     
-    public String toJsonString(QueryParams)
+    public String toJsonString(QueryParams mParams)
     {
         try
         {
