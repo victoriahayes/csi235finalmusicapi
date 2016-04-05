@@ -5,10 +5,35 @@
  */
 package musicapiclient;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.Scanner;
+
 /**
  *
  * @author Seaweed
  */
 public class ServerConnection {
-    
+    public ServerConnection(String jsonString)
+    {
+        try {
+        InetAddress localAddress=InetAddress.getLocalHost();
+        try {
+             Socket clientSocket = new Socket(localAddress, 8888);
+                BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
