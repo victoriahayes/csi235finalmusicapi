@@ -19,11 +19,16 @@ public class jsonConverter {
         try
         {
             JSONObject jsonObj=new JSONObject();
+            jsonObj.put("ConnectionType", mParams.getConnectionType());
+            jsonObj.put("Artist", mParams.getArtist());
+            jsonObj.put("Genre", mParams.getGenre());
+            jsonObj.put("Number of Songs", mParams.getNumSongs());
+            return jsonObj.toString();
         }
         catch(Exception ex)
         {
             System.out.println("Error");
         }
-        return (" ");
+        return null;
     }
 }

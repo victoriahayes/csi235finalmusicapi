@@ -14,10 +14,14 @@ public class GUI_page2 extends javax.swing.JFrame {
     private JCheckBox specificArtist;
     private JCheckBox specificGenre;
     private JButton submitButton;
+    private jsonConverter jsonConv;
     public String artist;
     public String genre;
     public String value;
     public int numSongs;
+    public String serverParams;
+    public ServerConnection conn;
+    public QueryParams mParams;
     
    
     public GUI_page2(int whichPage) {
@@ -32,17 +36,19 @@ public class GUI_page2 extends javax.swing.JFrame {
         genreString = new JTextField(15);
         numberString = new JTextField(4);
         submitButton = new JButton();
-
+        mParams=new QueryParams();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         
         if(whichPage==1)
         {
+            mParams.setConnectionType("top songs");
             Title.setText("Top Songs Menu");
             Description.setText("<html>By default, the Tops Songs menu will output the 10 most popular songs at current.<br>However, this output can be modified by specifying an Artist, Genre, and Number of Songs.<br>Just select which values you'd like to change, then enter the values in the text boxes.</html>");
         }
         else if(whichPage==2)
         {
+            mParams.setConnectionType("playlist");
             Title.setText("Playlist Generation Menu");
             Description.setText("<html>In order to generate a playlist, you need to input traits that you'd like the songs to have.<br>This includes the size of the playlist, artist the songs sound like, or the genre of the songs</html>");
         }
@@ -73,6 +79,10 @@ public class GUI_page2 extends javax.swing.JFrame {
                     //alert artist field is empty
                     specificArtist.setSelected(false);
                 }
+                else
+                {
+                    mParams.setArtist(artist);
+                }
             }
             if(specificGenre.isSelected()){
              genre=genreString.getText();
@@ -80,6 +90,10 @@ public class GUI_page2 extends javax.swing.JFrame {
                 {
                     //alert genre field is empty
                     specificGenre.setSelected(false);
+                }
+                else
+                {
+                    mParams.setGenre(genre);
                 }
             }
             if(specificNumSongs.isSelected()){
@@ -93,6 +107,7 @@ public class GUI_page2 extends javax.swing.JFrame {
                 {
                     try{
                           numSongs=Integer.parseInt(value);
+                          mParams.setNumSongs(numSongs);
                     }
                     catch(NumberFormatException NaN)
                     {
@@ -107,8 +122,9 @@ public class GUI_page2 extends javax.swing.JFrame {
             }
             else
             {
-                //start sending data to the server to be sent to API
-                //stategy: write the variables into a JSON string, have the server parse the JSON string into the appropriate variables, and then create the URL.
+                jsonConv=new jsonConverter();
+                serverParams=jsonConv.toJsonString(mParams);
+                conn=new ServerConnection(serverParams);
             }
         }
         });
