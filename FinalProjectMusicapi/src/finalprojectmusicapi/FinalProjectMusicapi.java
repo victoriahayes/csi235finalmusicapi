@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.IOException;
 import java.io.InputStream; 
-import java.net.HttpURLConnection; 
+import java.net.HttpURLConnection;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URL;
 
 import org.json.*;
@@ -12,12 +15,13 @@ package finalprojectmusicapi;
 
 /**
  *
- * @author Victoria Hayes
+ * @author Victoria Hayes Alec Rulev
  */
 public class FinalProjectMusicapi {
 final String APIKEY = "FGYIK9QZRNXZTLU1F";
-final String SITEACCESS = "http://developer.echonest.com/api/v4/song/search?api_key=FGYIK9QZRNXZTLU1F";
-    /**
+final String STATICPLAYLIST = "http://developer.echonest.com/api/v4/playlist/static?api_key=";
+final String SEARCHBYARTIST = "http://developer.echonest.com/api/v4/song/search?api_key=";
+/**
      * @param args the command line arguments
      */
 
@@ -39,14 +43,21 @@ public static Song[] parseData(String songJsonStr, int numSongs)
 }
 
 // issue: figure out how to fetch what you're searching for from client
-public static String fetchData(int year)
+public static String fetchData(String connectionType, String artist, int numSongs)
 {
 	HttpURLConnection urlConnection = null;
 	BufferedReader reader = null;
 	String jsonString = null;
+	String sURL = null;
 	try
-	{
-		String sUrl= SITEACCESS;// + year + "&sort_by=vote_average.desc&api_key=" + APIKEY;
+	{	if(connectionType = "top songs")
+		{
+			sUrl = SEARCHBYARTIST + APIKEY + "&artist=" + artist + "&results=" + numSongs;
+		}
+		else if(connectionType = "playlist")
+		{
+			sUrl = STATICPLAYLIST + APIKEY + "&artist=" + artist + "&results=" + numSongs;
+		}
 		URL url = new URL(sUrl);
 		urlConnection = (HttpURLConnection) url.openConnection();   
 		urlConnection.setRequestMethod("GET"); 
@@ -97,7 +108,35 @@ public static String fetchData(int year)
         * give response to client--possibly formatted back into a simplified JSON string or as an entire web page.
         */
     	
+    	Socket sSocket = null;   
+    	//client connection 
+    	try{
+    		ServerSocket serverSocket = new ServerSocket(6000);
+    		System.out.println("Waiting for connection....");
+    		sSocket = serverSocket.accept();
+    		System.out.println("Connected to client");
+    	}catch(IOException ex){
+    		Sytem.out.println(ex.getMessage());
+    	}
     	
+    	/*
+    	 *     public QueryParams()
+    {
+        this.connectionType="";
+        this.genre="";
+        this.artist="";
+        this.numSongs=10;
+    }
+    	 */
+    	try{
+    		BufferedReader br = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
+    		
+    		String inputLine;
+    		while(inputLine = br.readLine()) != null){
+    			System.out.println("Client request: " + inputLine);
+    			String[] parameters = inputLine.S
+    		}
+    	}
     }
     
 }
