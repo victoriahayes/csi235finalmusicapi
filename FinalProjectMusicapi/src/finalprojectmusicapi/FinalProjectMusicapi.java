@@ -22,16 +22,16 @@ final String SITEACCESS = "http://developer.echonest.com/api/v4/song/search?api_
      */
 
 //Convert function into song object
-public static Movie[] parseData(String songJsonStr, int numSongs)
+public static Song[] parseData(String songJsonStr, int numSongs)
 {
-	Movie[] songs = new Movie[numSongs];
+	Song[] songs = new Song[numSongs];
 	try{
 		 JSONObject songJson = new JSONObject(songJsonStr);
-		 JSONArray songJsonArray = songJson.getJSONArray("songss");
+		 JSONArray songJsonArray = songJson.getJSONArray("songs");
 		 for(int i = 0;i<numSongs;i++)
 		 {
 			 JSONObject song = (JSONObject)songJsonArray.get(i);
-			 Movie temp = new Movie(song.getString("artist_name"), movie.getString("title"));
+			 Song temp = new Song(song.getString("artist_name"), song.getString("title"));
 			 songs[i] = temp;
 		 }
 	}catch(JSONException e){System.out.println(e.getMessage());}
