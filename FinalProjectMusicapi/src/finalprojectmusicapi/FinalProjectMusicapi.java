@@ -46,7 +46,7 @@ public static String fetchData(int year)
 	String jsonString = null;
 	try
 	{
-		String sUrl= SITEACCESS;// + APIKEY;
+		String sUrl= SITEACCESS;// + year + "&sort_by=vote_average.desc&api_key=" + APIKEY;
 		URL url = new URL(sUrl);
 		urlConnection = (HttpURLConnection) url.openConnection();   
 		urlConnection.setRequestMethod("GET"); 
@@ -74,7 +74,8 @@ public static String fetchData(int year)
 		}  
 		if (reader != null)
 		{                
-			try           
+			try       
+
 			 {            
 				 reader.close();    //close the input stream  
 			 }                
