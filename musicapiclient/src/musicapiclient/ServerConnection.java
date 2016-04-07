@@ -22,7 +22,7 @@ public class ServerConnection {
         try {
         InetAddress localAddress=InetAddress.getLocalHost();
         try {
-             Socket clientSocket = new Socket(localAddress, 8888);
+             Socket clientSocket = new Socket(localAddress, 6000);
                 BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 
