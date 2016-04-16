@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+package finalprojectmusicapi;
+
 import java.io.IOException;
 import java.io.InputStream; 
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
-
-import org.json.*;
-package finalprojectmusicapi;
-
 /**
  *
  * @author Victoria Hayes Alec Rulev
@@ -43,18 +44,19 @@ public static Song[] parseData(String songJsonStr, int numSongs)
 }
 
 // issue: figure out how to fetch what you're searching for from client
-public static String fetchData(String connectionType, String artist, int numSongs)
+public  String fetchData(String connectionType, String artist, int numSongs)
 {
 	HttpURLConnection urlConnection = null;
 	BufferedReader reader = null;
 	String jsonString = null;
-	String sURL = null;
+	String sUrl = null;
 	try
-	{	if(connectionType = "top songs")
+	{	
+            if(connectionType == "top songs")
 		{
 			sUrl = SEARCHBYARTIST + APIKEY + "&artist=" + artist + "&results=" + numSongs;
 		}
-		else if(connectionType = "playlist")
+		else if(connectionType == "playlist")
 		{
 			sUrl = STATICPLAYLIST + APIKEY + "&artist=" + artist + "&results=" + numSongs;
 		}
@@ -90,7 +92,7 @@ public static String fetchData(String connectionType, String artist, int numSong
 			 {            
 				 reader.close();    //close the input stream  
 			 }                
-			catch (final IOException e){
+			catch (final Exception e){
 				 System.out.println(e.getMessage()); }
 		}
 		else
@@ -116,7 +118,7 @@ public static String fetchData(String connectionType, String artist, int numSong
     		sSocket = serverSocket.accept();
     		System.out.println("Connected to client");
     	}catch(IOException ex){
-    		Sytem.out.println(ex.getMessage());
+    		System.out.println(ex.getMessage());
     	}
     	
     	/*
@@ -132,11 +134,13 @@ public static String fetchData(String connectionType, String artist, int numSong
     		BufferedReader br = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
     		
     		String inputLine;
-    		while(inputLine = br.readLine()) != null){
+    		while((inputLine = br.readLine()) != null){
     			System.out.println("Client request: " + inputLine);
-    			String[] parameters = inputLine.S
+    			//String[] parameters = inputLine.S
     		}
     	}
+        catch(Exception ex)
+        {}
     }
     
 }

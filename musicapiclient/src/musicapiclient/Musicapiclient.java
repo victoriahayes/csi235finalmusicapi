@@ -19,7 +19,7 @@ public class Musicapiclient {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI_base().setVisible(true);
+                GUI_base start= new GUI_base();
             }
         });
     }
