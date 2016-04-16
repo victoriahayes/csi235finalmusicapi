@@ -27,126 +27,21 @@ public class formatter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Title = new javax.swing.JLabel();
-        Description = new javax.swing.JLabel();
-        specificArtist = new javax.swing.JCheckBox();
-        specificGenre = new javax.swing.JCheckBox();
-        SpecificNumSongs = new javax.swing.JCheckBox();
-        artistString = new javax.swing.JTextField();
-        GenreString = new javax.swing.JTextField();
-        NumberString = new javax.swing.JTextField();
-        submitButton = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Title.setText("Top Songs Menu");
-
-        Description.setText("By default, the Tops Songs menu will output the 10 most popular songs at current.");
-
-        specificArtist.setText("Artist");
-        specificArtist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                specificArtistActionPerformed(evt);
-            }
-        });
-
-        specificGenre.setText("Genre");
-
-        SpecificNumSongs.setText("Number of Songs");
-        SpecificNumSongs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SpecificNumSongsActionPerformed(evt);
-            }
-        });
-
-        artistString.setText("Artist e.g. Radiohead");
-
-        GenreString.setText("Genre e.g. Rock");
-        GenreString.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenreStringActionPerformed(evt);
-            }
-        });
-
-        NumberString.setText("# of songs e.g. 20");
-        NumberString.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberStringActionPerformed(evt);
-            }
-        });
-
-        submitButton.setText("Submit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Title)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Description)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(specificArtist)
-                                    .addComponent(specificGenre)
-                                    .addComponent(SpecificNumSongs))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(GenreString, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(artistString, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NumberString))))))
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitButton)
-                .addGap(136, 136, 136))
+            .addGap(0, 446, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Description)
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(specificArtist)
-                    .addComponent(artistString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(specificGenre)
-                    .addComponent(GenreString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpecificNumSongs)
-                    .addComponent(NumberString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submitButton)
-                .addContainerGap(75, Short.MAX_VALUE))
+            .addGap(0, 293, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void specificArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specificArtistActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_specificArtistActionPerformed
-
-    private void SpecificNumSongsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpecificNumSongsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SpecificNumSongsActionPerformed
-
-    private void GenreStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenreStringActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GenreStringActionPerformed
-
-    private void NumberStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberStringActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NumberStringActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,14 +79,5 @@ public class formatter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Description;
-    private javax.swing.JTextField GenreString;
-    private javax.swing.JTextField NumberString;
-    private javax.swing.JCheckBox SpecificNumSongs;
-    private javax.swing.JLabel Title;
-    private javax.swing.JTextField artistString;
-    private javax.swing.JCheckBox specificArtist;
-    private javax.swing.JCheckBox specificGenre;
-    private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
 }

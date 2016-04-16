@@ -3,13 +3,14 @@ package musicapiclient;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class GUI_page2 extends javax.swing.JFrame {
+public class GUI_page2 extends JPanel {
     private int whichPage;
     private JLabel Description;
     private JTextField genreString;
     private JTextField numberString;
     private JCheckBox specificNumSongs;
     private JLabel Title;
+    private JPanel mPage2;
     private JTextField artistString;
     private JCheckBox specificArtist;
     private JCheckBox specificGenre;
@@ -26,7 +27,7 @@ public class GUI_page2 extends javax.swing.JFrame {
    
     public GUI_page2(int whichPage) {
         this.whichPage=whichPage;
-        
+        mPage2=new JPanel();
         Title = new JLabel();
         Description = new JLabel();
         specificArtist = new JCheckBox();
@@ -37,7 +38,6 @@ public class GUI_page2 extends javax.swing.JFrame {
         numberString = new JTextField(4);
         submitButton = new JButton();
         mParams=new QueryParams();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         
         if(whichPage==1)
@@ -130,8 +130,8 @@ public class GUI_page2 extends javax.swing.JFrame {
         });
         
         //created by netbean's formatter. Will change later.
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(mPage2);
+        mPage2.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -181,7 +181,5 @@ public class GUI_page2 extends javax.swing.JFrame {
                 .addComponent(submitButton)
                 .addContainerGap(75, Short.MAX_VALUE))
         );
-
-        pack();
     }                      
 }
