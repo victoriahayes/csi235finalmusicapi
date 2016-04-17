@@ -19,8 +19,8 @@ public class QueryParams {
     public QueryParams()
     {
         this.connectionType="";
-        this.genre="";
-        this.artist="";
+        this.genre="null";
+        this.artist="null";
         this.numSongs=10;
     }
     
