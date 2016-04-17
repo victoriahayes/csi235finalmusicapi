@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package musicapiclient;
-
+import org.json.*;
 /**
  *
  * @author Victoria
@@ -44,11 +44,17 @@ public class QueryParams {
     
     public String getGenre()
     {
-        return this.genre;
+        String tmpGenre=null;
+        tmpGenre=this.genre.trim();
+        tmpGenre=tmpGenre.replaceAll(" +", "+");
+        return tmpGenre;
     }
     
     public String getArtist(){
-        return this.artist;
+        String tmpArtist=null;
+        tmpArtist=this.artist.trim();
+        tmpArtist=tmpArtist.replaceAll(" +", "+");
+        return tmpArtist;
     }
     
     public String getConnectionType()
@@ -58,5 +64,43 @@ public class QueryParams {
     
     public int getNumSongs(){
         return this.numSongs;
+    }
+    
+    public String toJsonString()
+    {
+        try
+        {
+            JSONObject jsonObj=new JSONObject();
+            jsonObj.put("ConnectionType", this.connectionType);
+            jsonObj.put("Artist", this.artist);
+            jsonObj.put("Genre", this.genre);
+            jsonObj.put("Number of Songs", this.numSongs);
+            return jsonObj.toString();
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error");
+        }
+        return null;
+    }
+    
+    public void fromJsonString(String mStr)
+    {
+        try
+        {
+            JSONObject jsonStr = new JSONObject(mStr);
+            this.connectionType=jsonStr.getString("ConnectionType");
+            this.artist=jsonStr.getString("Artist");
+            this.genre=jsonStr.getString("Genre");
+            try
+            {
+            this.numSongs=Integer.parseInt(jsonStr.getString("Number of Songs"));
+            }
+            catch(Exception Nan)
+            {}
+        }
+        catch(Exception ex)
+        {
+        }
     }
 }

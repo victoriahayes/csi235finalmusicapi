@@ -4,16 +4,12 @@
  * and open the template in the editor.
  */
 
-
 package finalprojectmusicapi;
-
-import java.io.IOException;
-import java.io.InputStream; 
+import java.net.*;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.URL;
+import org.json.*;
+
+
 /**
  *
  * @author Victoria Hayes Alec Rulev
@@ -27,6 +23,17 @@ final String SEARCHBYARTIST = "http://developer.echonest.com/api/v4/song/search?
      */
 
 //Convert function into song object
+//need to fix
+public QueryParams parseClient(String qparam)
+{
+	QueryParams qp = new QueryParams();
+	try{
+		JSONObject qerp = new JSONObject(qparam);
+		qp = new QueryParams(qerp.getString("ConnectionType"), qerp.getString("Artist"), qerp.getString("Genre"), qerp.getString("Number of Songs"));
+		return qp;
+	}catch(Exception ex){System.out.println(ex.getMessage()));
+}
+
 public static Song[] parseData(String songJsonStr, int numSongs)
 {
 	Song[] songs = new Song[numSongs];
@@ -44,22 +51,24 @@ public static Song[] parseData(String songJsonStr, int numSongs)
 }
 
 // issue: figure out how to fetch what you're searching for from client
-public  String fetchData(String connectionType, String artist, int numSongs)
+public static String fetchData(String connectionType, String artist, int numSongs)
 {
 	HttpURLConnection urlConnection = null;
 	BufferedReader reader = null;
 	String jsonString = null;
-	String sUrl = null;
+	String sURL = null;
 	try
-	{	
-            if(connectionType == "top songs")
+	{	if(connectionType = "top songs")
 		{
 			sUrl = SEARCHBYARTIST + APIKEY + "&artist=" + artist + "&results=" + numSongs;
 		}
-		else if(connectionType == "playlist")
+		else if(connectionType = "playlist")
 		{
 			sUrl = STATICPLAYLIST + APIKEY + "&artist=" + artist + "&results=" + numSongs;
 		}
+	try
+	{
+		String sUrl= SITEACCESS;// + year + "&sort_by=vote_average.desc&api_key=" + APIKEY;
 		URL url = new URL(sUrl);
 		urlConnection = (HttpURLConnection) url.openConnection();   
 		urlConnection.setRequestMethod("GET"); 
@@ -88,11 +97,10 @@ public  String fetchData(String connectionType, String artist, int numSongs)
 		if (reader != null)
 		{                
 			try       
-
 			 {            
 				 reader.close();    //close the input stream  
 			 }                
-			catch (final Exception e){
+			catch (final IOException e){
 				 System.out.println(e.getMessage()); }
 		}
 		else
@@ -100,6 +108,7 @@ public  String fetchData(String connectionType, String artist, int numSongs)
 		 }
 	return jsonString;
 	}
+}
 	
     public static void main(String[] args) {
         // TODO build this to be the server side
@@ -116,10 +125,8 @@ public  String fetchData(String connectionType, String artist, int numSongs)
     		ServerSocket serverSocket = new ServerSocket(6000);
     		System.out.println("Waiting for connection....");
     		sSocket = serverSocket.accept();
-    		System.out.println("Connected to client");
-    	}catch(IOException ex){
-    		System.out.println(ex.getMessage());
-    	}
+    		System.out.println("Connected to Music Client");
+    	}catch(IOException ex){System.out.println(ex.getMessage());}
     	
     	/*
     	 *     public QueryParams()
@@ -134,13 +141,19 @@ public  String fetchData(String connectionType, String artist, int numSongs)
     		BufferedReader br = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
     		
     		String inputLine;
-    		while((inputLine = br.readLine()) != null){
-    			System.out.println("Client request: " + inputLine);
-    			//String[] parameters = inputLine.S
+    		inputLine = br.readLine();
+    		if(br.readLine() != null)
+				ServerSocket.out.println("Input Error");
+			else{
+				System.out.println("Client request: " + inputLine "... Parsing ...");
+				QueryParams mainQuery = parseClient(inputline);
+				Song[] result = parseData(fetchData(mainQuery.getConnectionType(), mainQuery.getArtist(), mainQuery.getNumSongs()),mainQuery.getNumSongs())
+			}
+    	
     		}
+        catch(Exception Ex)
+        {
     	}
-        catch(Exception ex)
-        {}
     }
     
 }

@@ -24,7 +24,6 @@ public class GUI_base extends JFrame {
     private JCheckBox specificArtist;
     private JCheckBox specificGenre;
     private JButton submitButton;
-    private jsonConverter jsonConv;
     public String artist;
     public String genre;
     public String value;
@@ -169,8 +168,7 @@ public class GUI_base extends JFrame {
                     //alert equivalent
                     System.out.println("Need to have either artist or genre fields filled out.");
                 } else {
-                    jsonConv = new jsonConverter();
-                    serverParams = jsonConv.toJsonString(mParams);
+                    serverParams = mParams.toJsonString();
                     conn = new ServerConnection(serverParams);
                 }
             }
