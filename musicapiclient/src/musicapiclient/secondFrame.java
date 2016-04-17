@@ -3,6 +3,7 @@ package musicapiclient;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.GroupLayout.Alignment;
 
 public class secondFrame {
@@ -84,7 +85,12 @@ public class secondFrame {
             }
                 serverParams = mParams.toJsonString();
                 System.out.println(serverParams);
-                ServerConnection conn = new ServerConnection(serverParams);
+                String conn = new ServerConnection().getServerResponse(serverParams);
+                ArrayList<Song> songs= new ResultingJSON().getResult_final(conn);
+                JPanel panel4=new finalFrame().lFrame(songs,panels);
+                panels.add(panel4,"Results");
+                CardLayout cl =(CardLayout) panels.getLayout();
+                cl.show(panels,"Results");
         });
         GroupLayout page2_layout = new GroupLayout(mPage2);
         mPage2.setLayout(page2_layout);

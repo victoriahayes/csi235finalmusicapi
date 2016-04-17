@@ -3,6 +3,7 @@ package musicapiclient;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.GroupLayout.Alignment;
 
 public class thirdFrame {
@@ -100,9 +101,14 @@ public class thirdFrame {
                 }
                 else {
 
-                    serverParams = mParams1.toJsonString();
-                    System.out.println(serverParams);
-                    ServerConnection conn1 = new ServerConnection(serverParams);
+                  serverParams = mParams1.toJsonString();
+                System.out.println(serverParams);
+                String conn1 = new ServerConnection().getServerResponse(serverParams);
+                ArrayList<Song> songs= new ResultingJSON().getResult_final(conn1);
+                JPanel panel4=new finalFrame().lFrame(songs, panels);
+                panels.add(panel4,"Results");
+                CardLayout cl =(CardLayout) panels.getLayout();
+                cl.show(panels,"Results");
                 }
             }
         });

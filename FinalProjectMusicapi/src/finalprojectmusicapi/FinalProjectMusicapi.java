@@ -32,6 +32,8 @@ public class FinalProjectMusicapi {
         QueryParams qp = new QueryParams();
         Socket sSocket = null;
         //client connection 
+        while(true)
+        {
         try {
             ServerSocket serverSocket = new ServerSocket(6000);
             System.out.println("Waiting for connection....");
@@ -49,13 +51,22 @@ public class FinalProjectMusicapi {
                 qp.fromJsonString(inputLine);
                 String response = fetchData(qp);
                 System.out.println(response);
-                PrintWriter out = new PrintWriter(sSocket.getOutputStream(), true);
-                out.println(response);
-                out.println("done");
+                try {
+                    PrintWriter out = new PrintWriter(sSocket.getOutputStream(), true);
+                    out.println(response);
+                    System.out.println("Sent");
+                    out.close();
+                    br.close();
+                    sSocket.close();
+                } catch (Exception pr) {
+                    System.out.println("no pr");
+                }
+
             }
 
         } catch (Exception Ex) {
             System.out.println("huh?");
+        }
         }
     }
 
@@ -76,10 +87,6 @@ public class FinalProjectMusicapi {
                 mStr += "&type=artist-radio";
             }
         }
-        if (qp.getNumSongs() != 10) {
-            mStr += "&results=";
-            mStr += qp.getNumSongs();
-        }
         if (!qp.getGenre().equals("null")) {
             mStr += "&style=";
             mStr += qp.getGenre();
@@ -87,6 +94,8 @@ public class FinalProjectMusicapi {
                 mStr += "&type=artist-description";
             }
         }
+              mStr += "&results=";
+            mStr += qp.getNumSongs();
         mStr += "&sort=song_hotttnesss-desc";
 
         System.out.println(mStr);
@@ -115,6 +124,7 @@ public class FinalProjectMusicapi {
             StringBuilder buffer = new StringBuilder();
             while ((line = reader.readLine()) != null) {
                 buffer.append(line).append("\n");
+                line = reader.readLine();
             }
             jsonString = buffer.toString();
         } catch (IOException e) {
