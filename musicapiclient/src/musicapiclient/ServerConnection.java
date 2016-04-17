@@ -17,22 +17,32 @@ import java.util.Scanner;
  * @author Seaweed
  */
 public class ServerConnection {
-    public ServerConnection(String jsonString)
-    {
+
+    public ServerConnection(String jsonString) {
         try {
-        InetAddress localAddress=InetAddress.getLocalHost();
-        try {
-             Socket clientSocket = new Socket(localAddress, 6000);
+            InetAddress localAddress = InetAddress.getLocalHost();
+            try {
+                Socket clientSocket = new Socket(localAddress, 6000);
                 BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                
-        }
-        catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }
-        }
-        catch(Exception ex)
-        {
+                System.out.println("here");
+                System.out.println(jsonString);
+                out.println(jsonString);
+                String response = "";
+                response = br.readLine();
+                while ((response = br.readLine()) != null) {
+
+                    if (response.equals("done")) {
+                        break;
+                    } else {
+                        System.out.println(response);
+                    }
+                }
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
