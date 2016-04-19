@@ -1,4 +1,5 @@
 package musicapiclient;
+//arbitrary GUI page
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,7 +77,7 @@ public class secondFrame {
                 } else {
                     try {
                         numSongs = Integer.parseInt(value);
-                        mParams.setNumSongs(numSongs);
+                        mParams.setNumSongs(value);
                     } catch (NumberFormatException NaN) {
                         Alerts alert=new Alerts("Number of songs field not a number.");
                         specificNumSongs.setSelected(false);

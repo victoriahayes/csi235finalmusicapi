@@ -1,5 +1,5 @@
 package musicapiclient;
-
+//arbitrary GUI page
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

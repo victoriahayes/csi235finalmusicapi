@@ -1,27 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package musicapiclient;
 import org.json.*;
-/**
- *
- * @author Victoria
- */
+
+//makes simple JSON string of user input variables for server to parse
 public class QueryParams {
-    //TODO: create a json string writer to easily pass vaiables to the server
     String connectionType;
     String artist;
     String genre;
-    int numSongs;
+    String numSongs;
     
     public QueryParams()
     {
         this.connectionType="";
         this.genre="null";
         this.artist="null";
-        this.numSongs=10;
+        this.numSongs="10";
     }
     
     public void setConnectionType(String conn)
@@ -37,7 +30,7 @@ public class QueryParams {
     public void setArtist(String artist){
         this.artist=artist;
     }
-    public void setNumSongs(int numSongs)
+    public void setNumSongs(String numSongs)
     {
         this.numSongs=numSongs;
     }
@@ -62,7 +55,7 @@ public class QueryParams {
         return this.connectionType;
     }
     
-    public int getNumSongs(){
+    public String getNumSongs(){
         return this.numSongs;
     }
     
@@ -84,23 +77,4 @@ public class QueryParams {
         return null;
     }
     
-    public void fromJsonString(String mStr)
-    {
-        try
-        {
-            JSONObject jsonStr = new JSONObject(mStr);
-            this.connectionType=jsonStr.getString("ConnectionType");
-            this.artist=jsonStr.getString("Artist");
-            this.genre=jsonStr.getString("Genre");
-            try
-            {
-            this.numSongs=Integer.parseInt(jsonStr.getString("Number of Songs"));
-            }
-            catch(Exception Nan)
-            {}
-        }
-        catch(Exception ex)
-        {
-        }
-    }
 }

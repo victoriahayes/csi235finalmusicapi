@@ -1,27 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//reads json string of variables sent by client
 package finalprojectmusicapi;
 
 import org.json.*;
 
-/**
- *
- * @author Victoria
- */
 public class QueryParams {
     String connectionType;
     String artist;
     String genre;
-    int numSongs;
+    String numSongs;
 
     public QueryParams() {
         this.connectionType = "";
         this.genre = "null";
         this.artist = "null";
-        this.numSongs = 10;
+        this.numSongs = "null";
     }
 
     public void setConnectionType(String conn) {
@@ -36,7 +28,7 @@ public class QueryParams {
         this.artist = artist;
     }
 
-    public void setNumSongs(int numSongs) {
+    public void setNumSongs(String numSongs) {
         this.numSongs = numSongs;
     }
 
@@ -58,35 +50,21 @@ public class QueryParams {
         return this.connectionType;
     }
 
-    public int getNumSongs() {
+    public String getNumSongs() {
         return this.numSongs;
     }
 
-    public String toJsonString() {
-        try {
-            JSONObject jsonObj = new JSONObject();
-            jsonObj.put("ConnectionType", this.connectionType);
-            jsonObj.put("Artist", this.artist);
-            jsonObj.put("Genre", this.genre);
-            jsonObj.put("Number of Songs", this.numSongs);
-            return jsonObj.toString();
-        } catch (Exception ex) {
-            System.out.println("Error");
-        }
-        return null;
-    }
-
     public void fromJsonString(String mStr) {
-        try {
+        try
+        {
             JSONObject jsonStr = new JSONObject(mStr);
-            this.connectionType = jsonStr.getString("ConnectionType");
-            this.artist = jsonStr.getString("Artist");
-            this.genre = jsonStr.getString("Genre");
-            try {
-                this.numSongs = Integer.parseInt(jsonStr.getString("Number of Songs"));
-            } catch (Exception Nan) {
-            }
-        } catch (Exception ex) {
+            this.connectionType=jsonStr.getString("ConnectionType");
+            this.artist=jsonStr.getString("Artist");
+            this.genre=jsonStr.getString("Genre");
+            this.numSongs=jsonStr.getString("Number of Songs");
+        }
+        catch(Exception ex)
+        {
         }
     }
 }

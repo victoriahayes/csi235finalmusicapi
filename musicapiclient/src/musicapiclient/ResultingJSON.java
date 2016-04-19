@@ -1,8 +1,9 @@
-
 package musicapiclient;
 
 import java.util.ArrayList;
 import org.json.*;
+
+//parser for JSON string from server
 public class ResultingJSON {
     public ResultingJSON(){}
     public ArrayList getResult_final(String mResult)

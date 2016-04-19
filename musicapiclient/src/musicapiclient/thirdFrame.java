@@ -1,3 +1,4 @@
+//arbitraru GUI page
 
 package musicapiclient;
 import javax.swing.*;
@@ -80,7 +81,7 @@ public class thirdFrame {
                     } else {
                         try {
                             numSongs = Integer.parseInt(value);
-                            mParams1.setNumSongs(numSongs);
+                            mParams1.setNumSongs(value);
                         } catch (NumberFormatException NaN) {
                             Alerts alert=new Alerts("Number of songs field not a number");
                             specificNumSongs2.setSelected(false);
@@ -88,7 +89,6 @@ public class thirdFrame {
                     }
                 }
                 if (!(specificArtist2.isSelected() || specificGenre2.isSelected())) {
-                    //alert equivalent
                     Alerts alert=new Alerts("Need to have either artist or genre fields filled out.");
                 } 
                 else if(specificArtist2.isSelected() && artistString2.getText().trim().isEmpty())
@@ -101,8 +101,7 @@ public class thirdFrame {
                 }
                 else {
 
-                  serverParams = mParams1.toJsonString();
-                System.out.println(serverParams);
+                serverParams = mParams1.toJsonString();
                 String conn1 = new ServerConnection().getServerResponse(serverParams);
                 ArrayList<Song> songs= new ResultingJSON().getResult_final(conn1);
                 JPanel panel4=new finalFrame().lFrame(songs, panels);

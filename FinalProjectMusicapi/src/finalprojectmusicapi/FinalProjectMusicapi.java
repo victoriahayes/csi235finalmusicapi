@@ -1,34 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package finalprojectmusicapi;
 
 import java.net.*;
 import java.io.*;
 import org.json.*;
 
-/**
- *
- * @author Victoria Hayes Alec Rulev
- */
 public class FinalProjectMusicapi {
 
     final String APIKEY = "FGYIK9QZRNXZTLU1F";
     final String STATICPLAYLIST = "http://developer.echonest.com/api/v4/playlist/static?api_key=";
     final String SEARCHBYARTIST = "http://developer.echonest.com/api/v4/song/search?api_key=";
 
-    /**
-     * @param args the command line arguments
-     */
+  //connects to client and sends response back after reading the request
     public static void main(String[] args) {
-        // TODO build this to be the server side
-        /* Goals:
-        * read form sent by client
-        * parse the client's input into strings that can be built into the URL
-        * give response to client--possibly formatted back into a simplified JSON string or as an entire web page.
-         */
         QueryParams qp = new QueryParams();
         Socket sSocket = null;
         //client connection 
@@ -40,7 +24,7 @@ public class FinalProjectMusicapi {
             sSocket = serverSocket.accept();
             System.out.println("Connected to Music Client");
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            //System.out.println(ex.getMessage());
         }
 
         try {
@@ -65,14 +49,13 @@ public class FinalProjectMusicapi {
             }
 
         } catch (Exception Ex) {
-            System.out.println("huh?");
         }
         }
     }
 
+    //makes the url to connect to
     public static String buildURL(QueryParams qp) {
         String mStr = null;
-
         if (qp.getConnectionType().equals("top songs")) {
             mStr = "http://developer.echonest.com/api/v4/song/search?api_key=";
         } else {
@@ -94,15 +77,16 @@ public class FinalProjectMusicapi {
                 mStr += "&type=artist-description";
             }
         }
-              mStr += "&results=";
-            mStr += qp.getNumSongs();
+        System.out.println(qp.getNumSongs());
+            mStr += "&results=" + qp.getNumSongs();
+          
         mStr += "&sort=song_hotttnesss-desc";
 
         System.out.println(mStr);
         return mStr;
     }
 
-// issue: figure out how to fetch what you're searching for from client
+    //connects to API
     public static String fetchData(QueryParams qp) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;

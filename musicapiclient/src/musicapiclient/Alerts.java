@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
+//simple dialogue response for errors
 public class Alerts extends JFrame {
     
     public JFrame frame;

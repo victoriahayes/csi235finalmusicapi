@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+//gui implementation; builds all frames for user interaction
+
 public class GUI_base extends JFrame {
     public JPanel panel1;
     public JPanel panel2;
